@@ -4,11 +4,10 @@ import re
 def parse_dext_bot_message(message: str) -> dict:
     data = {}
 
-    pattern = r"(?P<token_name>[\w\s.()]+)\s\((?P<token_pair>[\w\/]+)\)"
+    pattern = r"(.*?)\s*\((.*?)\)"
     token_match = re.search(pattern, message)
     if token_match:
         token_name, token_pair = token_match.groups()
-        token_name = token_name.split("\n\n")[1]
         data["token_name"] = token_name.strip()
         data["token_pair"] = token_pair.strip()
 
